@@ -5,24 +5,39 @@ using UnityEngine;
 public class Button : MonoBehaviour
 {
     [SerializeField]
-    private GameObject handler;
+    private GameObject portal;
+    [SerializeField]
+    private GameObject soul;
+    [SerializeField]
+    private GameObject soulDest;
+
     private Animator animator;
-    // Start is called before the first frame update
+    private bool isPressed = false;
+    private bool isMoving = false;
+
     void Start()
     {
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
-
+        if(isMoving)
+        {
+            soul.transform.position = Vector3.MoveTowards(soul.transform.position, soulDest.transform.position, 1.0f * Time.deltaTime);
+            if (soul.transform.position == soulDest.transform.position)
+            {
+                isMoving = false;
+                Debug.Log("STOP");
+            }
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("hand"))
+        if (collision.gameObject.CompareTag("hand") && isPressed == false)
         {
+            isPressed = true;
             StartCoroutine(Pressed());
         }
     }
@@ -31,7 +46,10 @@ public class Button : MonoBehaviour
     {
         animator.SetTrigger("pressed");
         yield return new WaitForSeconds(0.5f);
-        handler.GetComponent<Animator>().SetTrigger("lowered");
-
+        portal.SetActive(true);
+        soul.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        isMoving = true;
+        isPressed = false;
     }
 }
