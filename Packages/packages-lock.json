@@ -211,9 +211,9 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.openxr.picoxr": {
-      "version": "file:B:/Загрузки/PICO Unity OpenXR Integration SDK-1.2.1_20240905",
+      "version": "file:PICO Unity OpenXR Integration SDK-1.2.1_20240905",
       "depth": 0,
-      "source": "local",
+      "source": "embedded",
       "dependencies": {
         "com.unity.xr.core-utils": "2.2.0",
         "com.unity.xr.openxr": "1.8.2"

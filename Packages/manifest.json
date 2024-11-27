@@ -9,7 +9,7 @@
     "com.unity.xr.interaction.toolkit": "2.5.4",
     "com.unity.xr.management": "4.5.0",
     "com.unity.xr.openxr": "1.10.0",
-    "com.unity.xr.openxr.picoxr": "file:B:/Загрузки/PICO Unity OpenXR Integration SDK-1.2.1_20240905",
+    "com.unity.xr.openxr.picoxr": "Packages/PICO Unity OpenXR Integration SDK-1.2.1_20240905",
     "com.unity.modules.ai": "1.0.0",
     "com.unity.modules.androidjni": "1.0.0",
     "com.unity.modules.animation": "1.0.0",
