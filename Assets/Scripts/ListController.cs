@@ -1,6 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.PlasticSCM.Editor.WebApi;
 using UnityEngine;
 
 public class ListController : MonoBehaviour
@@ -14,17 +13,32 @@ public class ListController : MonoBehaviour
     private GameObject visitorsListPref;
     [SerializeField]
     private GameObject actionsListPref;
+    [SerializeField]
+    private GameObject actualSealPref;
+
+    [SerializeField]
+    private GameObject documentListPref;
+
+    [SerializeField]
+    private GameObject badPref;
+
+    [SerializeField]
+    private GameObject goodPref;
+
+    [SerializeField]
+    private GameObject payPref;
 
     [SerializeField]
     private GameObject placeforlistToSpawn;
-    [SerializeField]
-    private GameObject actualSealToSpawn;
 
+    private DeadListHolder currDeadList;
+    private ActionsListHolder currActionsList;
 
     private GameObject ticket;
     private GameObject deadList;
     private GameObject actionsList;
     private GameObject visitorsList;
+    private GameObject documentsList;
 
 
     private List<DeadListHolder> visitors = new List<DeadListHolder>();
@@ -35,16 +49,18 @@ public class ListController : MonoBehaviour
 
     public void Generate(){
 
-        if (totalvisits >= 7 || isInProcess) return;
+        if (totalvisits >= 7 || isInProcess) {
+            Instantiate(payPref, SetPosition(), new Quaternion(-180,120,180,0));
+            return;
+        }
         else isInProcess = true;
 
         int i = 0;
-        DeadListHolder curr = null;
 
         while(true){
             if (!visited[i]) {
                 if (Randomizer.GetRandomInt(0,2) == 1){
-                    curr = visitors[i];
+                    currDeadList = visitors[i];
                     totalvisits++;
                     visited[i] = true;
                     break;
@@ -53,15 +69,37 @@ public class ListController : MonoBehaviour
             i = (i + 1) % 7;
         }
 
-        SpawnDeadList(curr);
+        currActionsList = new ActionsListHolder();
+
+        SpawnDeadList();
         SpawnTicket();
-        SpawnActions(new ActionsListHolder());
+        SpawnActions();
+        SpawnDocumentList();
     }
 
     public void Revert(){
         Destroy(ticket);
         Destroy(deadList);
         Destroy(actionsList);
+        Destroy(documentsList);
+    }
+
+    public void FinalVerdict(bool userSentToHeaven){
+
+        if (!isInProcess) return;
+
+        bool hasToHeaven = 
+            currDeadList.IsCorrectSeal() && 
+            currActionsList.IsCorrectSeal() && 
+            currActionsList.IsPositiveKarma();
+
+        if (userSentToHeaven == hasToHeaven) {
+            Instantiate(goodPref, SetPosition(), new Quaternion(-180,120,180,0));
+        }
+        else {
+            Instantiate(badPref, SetPosition(), new Quaternion(-180,120,180,0));
+        }
+
         isInProcess = false;
     }
 
@@ -74,9 +112,9 @@ public class ListController : MonoBehaviour
         return pos;
     }
 
-    private void SpawnDeadList(DeadListHolder h){
+    private void SpawnDeadList(){
         deadList = Instantiate(deadListPref, SetPosition(), new Quaternion(180,120,180,0));
-        deadList.GetComponent<IDeadListHolderSettable>().Set(h);
+        deadList.GetComponent<IDeadListHolderSettable>().Set(currDeadList);
     }
 
     private void SpawnTicket(){
@@ -90,13 +128,17 @@ public class ListController : MonoBehaviour
         visitorsList.GetComponent<IVisitorsHolderSettable>().Set(visitors);
     }
 
-    private void SpawnActions(ActionsListHolder h){
+    private void SpawnActions(){
         actionsList = Instantiate(actionsListPref, SetPosition(), new Quaternion(-180,120,180,0));
-        actionsList.GetComponent<IActionsHolderSettable>().Set(h);
+        actionsList.GetComponent<IActionsHolderSettable>().Set(currActionsList);
     }
 
     private void SpawnSeal() {
-        Instantiate(actualSealToSpawn, SetPosition(), new Quaternion(-180,120,180,0));
+        Instantiate(actualSealPref, SetPosition(), new Quaternion(-180,120,180,0));
+    }
+
+    private void SpawnDocumentList() {
+        documentsList = Instantiate(documentListPref, SetPosition(), new Quaternion(-180,120,180,0));
     }
 
     // Start is called before the first frame update

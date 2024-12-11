@@ -21,10 +21,14 @@ public class DeadListHolder
         Surname = surnames[Randomizer.GetRandomInt(0, surnames.Count)];
         Name = names[Randomizer.GetRandomInt(0, names.Count)];
         Patronymic = patronymics[Randomizer.GetRandomInt(0, patronymics.Count)];
-        Age = Randomizer.GetRandomInt(0, 140);
+        Age = Randomizer.GetRandomInt(0, 110);
         Reason = reasons[Randomizer.GetRandomInt(0, reasons.Count)];
         Date = RandomDay();
         SealdId = CreateSealId();
+    }
+
+    public bool IsCorrectSeal(){
+        return SealdId == 0;
     }
 
     private int CreateSealId(){
@@ -55,6 +59,31 @@ public class DeadListHolder
     };
 
     private List<string> reasons = new List<string>(){
-        "Упал на лестнице", "Сбила машина", "Съела акула"
+        "Сердечный приступ",
+        "Инсульт",
+        "Рак",
+        "Пневмония",
+        "Диабет",
+        "Почечная недостаточность",
+        "Старческая немощь",
+        "Аневризма",
+        "Инфекционные заболевания",
+        "Анафилактический шок",
+        "Падение с высоты",
+        "Утопление",
+        "Пожар",
+        "Удушье",
+        "Автомобильная авария",
+        "Поражение электрическим током",
+        "Отравление",
+        "Попадание под поезд",
+        "Падение тяжелого предмета",
+        "Убийство",
+        "Удар тяжелым предметом",
+        "Удар молнии",
+        "Нападение акулы",
+        "Нападение собак",
+        "Укус змеи",
+        "Гипотермия"
     };
 }

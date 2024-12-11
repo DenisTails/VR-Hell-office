@@ -16,6 +16,22 @@ public class ActionsListHolder
         SealId = CreateSealId();
     }
 
+    public bool IsCorrectSeal(){
+        return SealId == 0;
+    }
+
+    private int Karma(){
+        int sum = 0;
+        for (int i = 0; i < actions.Count; i++){
+            sum += actions[i].IndexOfGood;
+        }
+        return sum;
+    }
+
+    public bool IsPositiveKarma(){
+        return Karma() >= 0;
+    }
+
     private int CreateSealId(){
         int chance =  Randomizer.GetRandomInt(1, 100);
 
@@ -30,7 +46,7 @@ public class ActionsListHolder
         int i = -1;
         while (list.Count < 5){
 
-            i = (i + 1) % MyAction.ListOfActions.Count;
+            i = (i + Randomizer.GetRandomInt(1,10)) % MyAction.ListOfActions.Count;
             
             if (list.IndexOf(MyAction.ListOfActions[i]) != -1) continue;
 
