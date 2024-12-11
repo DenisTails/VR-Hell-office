@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public interface IDeadListHolderSettable 
+public interface ITicketHolderSettable 
 {
-    void SetDeadList(DeadListHolder holder);
+    void Set(TicketHolder holder);
 }

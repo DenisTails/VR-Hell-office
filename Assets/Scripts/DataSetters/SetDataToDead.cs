@@ -3,21 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SetDataToDeadList : MonoBehaviour, IDeadListHolderSettable
+public class SetDataToDead : MonoBehaviour, IDeadListHolderSettable
 {
     [SerializeField]
     private List<Sprite> sprites;
 
     private DeadListHolder deadListHolder;
 
-    public void SetDeadList(DeadListHolder holder)
+    public void Set(DeadListHolder holder)
     {
-        this.deadListHolder = holder;
-    }
-
-    // Start is called before the first frame update
-    void Start()
-    {
+        deadListHolder = holder;
         transform.Find("Canvas/Image/Fields").transform.GetChild(0).GetComponent<Text>().text = deadListHolder.Id.ToString();
         transform.Find("Canvas/Image/Fields").transform.GetChild(1).GetComponent<Text>().text = deadListHolder.Surname.ToString();
         transform.Find("Canvas/Image/Fields").transform.GetChild(2).GetComponent<Text>().text = deadListHolder.Name.ToString();
@@ -26,11 +21,5 @@ public class SetDataToDeadList : MonoBehaviour, IDeadListHolderSettable
         transform.Find("Canvas/Image/Fields").transform.GetChild(5).GetComponent<Text>().text = deadListHolder.Date.ToString();
         transform.Find("Canvas/Image/Fields").transform.GetChild(6).GetComponent<Text>().text = deadListHolder.Reason.ToString();
         transform.Find("Canvas/Image/Seal").GetComponent<Image>().sprite = sprites[deadListHolder.SealdId];
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }

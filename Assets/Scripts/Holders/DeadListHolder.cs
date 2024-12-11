@@ -6,7 +6,7 @@ using Random = System.Random;
 
 public class DeadListHolder
 {
-    private Random gen = new Random();
+
     public int Id {get; set;}
     public string Surname {get; set;}
     public string Name {get; set;}
@@ -17,18 +17,18 @@ public class DeadListHolder
     public int SealdId {get; set;}
 
     public DeadListHolder(){
-        Id = gen.Next(0, 1000);
-        Surname = surnames[gen.Next(0, surnames.Count)];
-        Name = names[gen.Next(0, names.Count)];
-        Patronymic = patronymics[gen.Next(0, patronymics.Count)];
-        Age = gen.Next(0, 140);
-        Reason = reasons[gen.Next(0, reasons.Count)];
+        Id = Randomizer.GetRandomInt(0, 1000);
+        Surname = surnames[Randomizer.GetRandomInt(0, surnames.Count)];
+        Name = names[Randomizer.GetRandomInt(0, names.Count)];
+        Patronymic = patronymics[Randomizer.GetRandomInt(0, patronymics.Count)];
+        Age = Randomizer.GetRandomInt(0, 140);
+        Reason = reasons[Randomizer.GetRandomInt(0, reasons.Count)];
         Date = RandomDay();
         SealdId = CreateSealId();
     }
 
     private int CreateSealId(){
-        int chance =  gen.Next(1, 100);
+        int chance =  Randomizer.GetRandomInt(1, 100);
 
         if (chance >= 50) return 0;
         
@@ -39,7 +39,7 @@ public class DeadListHolder
     {
         DateTime start = new DateTime(2024, 1, 1);
         int range = (DateTime.Today - start).Days;
-        return start.AddDays(gen.Next(range));
+        return start.AddDays(Randomizer.GetRandomInt(range));
     }
 
     private List<string> surnames = new List<string>(){

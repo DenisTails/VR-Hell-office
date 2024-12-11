@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Hammer : MonoBehaviour
 {
-    [SerializeField] public AudioSource collisionSound;
+    [SerializeField] 
+    public AudioSource collisionSound;
+
+    [SerializeField] 
+    public GameObject listController;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +26,7 @@ public class Hammer : MonoBehaviour
         if (collision.gameObject.CompareTag("hammer"))
         {
             collisionSound.Play();
+            listController.GetComponent<ListController>().Revert();
         }
     }
 }

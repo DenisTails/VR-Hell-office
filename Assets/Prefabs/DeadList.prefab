@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 6596213166041017965}
   - component: {fileID: 8620435335177920415}
   - component: {fileID: 2460226802868546385}
-  - component: {fileID: 8323814852767905225}
+  - component: {fileID: 1368262031790207575}
   m_Layer: 0
   m_Name: DeadList
   m_TagString: Untagged
@@ -617,7 +617,7 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &8323814852767905225
+--- !u!114 &1368262031790207575
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -635,7 +635,7 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 4212c2cf49eb0c747ae1275c1f6c3d1b, type: 3}
   - {fileID: 21300000, guid: 28bf758cddd046c4ba9de04bcecf0485, type: 3}
   - {fileID: 21300000, guid: 0e71dd0bd79d77143beec446abcd9489, type: 3}
-  - {fileID: 21300000, guid: c45b2b40b534a4e4eaf61dab1d562aa7, type: 3}
+  - {fileID: 21300000, guid: 5125dffe5cf07fa48b58c7cc14c1968d, type: 3}
 --- !u!1 &2660238366415730682
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1157,7 @@ Transform:
   m_GameObject: {fileID: 9003445272828552005}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.388, y: -0.433, z: 0}
+  m_LocalPosition: {x: 0.388, y: 0.408, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

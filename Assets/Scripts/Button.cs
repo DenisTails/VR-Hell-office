@@ -15,12 +15,6 @@ public class Button : MonoBehaviour
     private bool isPressed = false;
     private bool isMoving = false;
 
-    [SerializeField]
-    private GameObject listToSpawn;
-
-    [SerializeField]
-    private GameObject placeforlistToSpawn;
-
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -44,16 +38,12 @@ public class Button : MonoBehaviour
         if (collision.gameObject.CompareTag("hand") && isPressed == false)
         {
             isPressed = true;
-            SpawnList();
+            gameObject.GetComponent<ListController>().Generate();
             StartCoroutine(Pressed());
         }
     }
 
-    private void SpawnList(){
-        DeadListHolder h = new DeadListHolder();
-        GameObject instance = Instantiate(listToSpawn, placeforlistToSpawn.transform.position, new Quaternion(180,120,180,0));
-        instance.GetComponent<IDeadListHolderSettable>().SetDeadList(h);
-    }
+    
 
     private IEnumerator Pressed()
     {
