@@ -43,7 +43,12 @@ public class Button : MonoBehaviour
         }
     }
 
-    
+    public void pPress()
+    {
+        isPressed = true;
+        gameObject.GetComponent<ListController>().Generate();
+        StartCoroutine(Pressed());
+    }
 
     private IEnumerator Pressed()
     {

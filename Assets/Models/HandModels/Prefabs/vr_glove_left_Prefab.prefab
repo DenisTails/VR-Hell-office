@@ -576,7 +576,7 @@ GameObject:
   - component: {fileID: 5119003311105230741}
   m_Layer: 0
   m_Name: vr_glove_left_Prefab
-  m_TagString: Untagged
+  m_TagString: hand
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
