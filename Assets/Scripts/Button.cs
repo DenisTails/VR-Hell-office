@@ -49,7 +49,7 @@ public class Button : MonoBehaviour
     {
         animator.SetTrigger("pressed");
         yield return new WaitForSeconds(0.5f);
-        // portal.SetActive(true);
+        portal.SetActive(true);
         soul.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         isMoving = true;
