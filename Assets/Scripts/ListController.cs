@@ -49,11 +49,16 @@ public class ListController : MonoBehaviour
 
     public void Generate(){
 
-        if (totalvisits >= 7 || isInProcess) {
+        if (isInProcess) {
+            return;
+        }
+
+        if (totalvisits >= 7) {
             Instantiate(payPref, SetPosition(), new Quaternion(-180,120,180,0));
             return;
         }
-        else isInProcess = true;
+        
+        isInProcess = true;
 
         int i = 0;
 
