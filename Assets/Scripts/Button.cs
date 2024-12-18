@@ -10,6 +10,8 @@ public class Button : MonoBehaviour
     private GameObject soul;
     [SerializeField]
     private GameObject soulDest;
+    [SerializeField]
+    private AngleController angleCont;
 
     private Animator animator;
     private bool isPressed = false;
@@ -24,7 +26,7 @@ public class Button : MonoBehaviour
     {
         if(isMoving)
         {
-            soul.transform.position = Vector3.MoveTowards(soul.transform.position, soulDest.transform.position, 1.0f * Time.deltaTime);
+            soul.transform.position = Vector3.MoveTowards(soul.transform.position, soulDest.transform.position, 2.0f * Time.deltaTime);
             if (soul.transform.position == soulDest.transform.position)
             {
                 isMoving = false;
@@ -39,7 +41,7 @@ public class Button : MonoBehaviour
         {
             isPressed = true;
             gameObject.GetComponent<ListController>().Generate();
-            StartCoroutine(Pressed());
+            Pressed();
         }
     }
 
@@ -47,16 +49,16 @@ public class Button : MonoBehaviour
     {
         isPressed = true;
         gameObject.GetComponent<ListController>().Generate();
-        StartCoroutine(Pressed());
+        Pressed();
     }
 
-    private IEnumerator Pressed()
+    private void Pressed()
     {
+        angleCont.toHell = 0;
+        angleCont.isMoving = false;
         animator.SetTrigger("pressed");
-        yield return new WaitForSeconds(0.5f);
         portal.SetActive(true);
         soul.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
         isMoving = true;
         isPressed = false;
     }
