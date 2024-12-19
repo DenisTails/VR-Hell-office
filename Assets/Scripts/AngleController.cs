@@ -27,6 +27,10 @@ public class AngleController : MonoBehaviour
     [SerializeField]
     private Animator Anim;
     [SerializeField]
+    private Animator soulAnimController;
+    [SerializeField]
+    private SoulAnim soulAnimScript;
+    [SerializeField]
     public bool isMoving = false;
     [SerializeField]
     public int toHell = 0;
@@ -48,7 +52,6 @@ public class AngleController : MonoBehaviour
                 if (soulobj.transform.position == soulDest.transform.position)
                 {
                     isMoving = false;
-
                     lever.transform.rotation = leverStart.transform.rotation;
                     Debug.Log("STOP");
                     
@@ -89,7 +92,7 @@ public class AngleController : MonoBehaviour
 
         if (gameObject.GetComponent<HingeJoint>().angle > 44){
             Debug.Log("To Hell");
-            
+            soulAnimScript.toHell();
             if (scream) soul.Play();
             scream = false;
             isMoving = true;
@@ -98,8 +101,7 @@ public class AngleController : MonoBehaviour
         }
         else if (gameObject.GetComponent<HingeJoint>().angle < -44){
             Debug.Log("To Heaven");
-            
-            
+            soulAnimScript.toHeven();
             isMoving = true;
             toHell = 2;
         }

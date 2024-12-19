@@ -9,6 +9,10 @@ public class Button : MonoBehaviour
     [SerializeField]
     private GameObject soul;
     [SerializeField]
+    private Animator soulAnimController;
+    [SerializeField]
+    private SoulAnim soulAnimScript;
+    [SerializeField]
     private GameObject soulDest;
     [SerializeField]
     private AngleController angleCont;
@@ -59,6 +63,9 @@ public class Button : MonoBehaviour
         animator.SetTrigger("pressed");
         portal.SetActive(true);
         soul.SetActive(true);
+        soulAnimScript.timeAnim = 10.0f;
+        soulAnimScript.startTimer = true;
+        soulAnimController.Play("lookAround");
         isMoving = true;
         isPressed = false;
     }
